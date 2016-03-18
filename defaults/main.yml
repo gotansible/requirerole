@@ -1,0 +1,23 @@
+---
+
+requirerole_destination: /etc/ansible/roles
+requirerole_temp: /tmp/ansible/requirerole
+
+requirerole_owner: root
+requirerole_group: "{{ requirerole_owner }}"
+
+requirerole_keyfile: ~/.ssh/mykeyfile
+
+requirerole_repos_private:
+  - repo: "git@github.com:gotansible/requirerole"
+    folder: "requirerole"
+    subfolder: "deploy/roles/myrole"
+    fullname: "namespace.myrole"
+    version: "master"
+
+requirerole_repos_public:
+  - repo: "https://github.com/gotansible/requirerole"
+    folder: "requirerole"
+    subfolder: "deploy/roles/myrole"
+    fullname: "namespace.myrole"
+    version: "master"

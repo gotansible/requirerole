@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: true
+  roles:
+    - role: requirerole
+      requirerole_repos_private: []
+      requirerole_repos_public:
+        - repo: "https://github.com/gotansible/requirerole"
+          folder: "requirerole"
+          subfolder: "deploy/roles/myrole"
+          fullname: "namespace.myrole"
+          version: "master"
