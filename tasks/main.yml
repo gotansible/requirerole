@@ -1,5 +1,8 @@
 ---
 
+- name: dependencies
+  include: depend.yml
+
 - name: ensure temporary download location
   file:
     state=directory
@@ -12,32 +15,33 @@
     owner={{ requirerole_owner }}
     group={{ requirerole_group }}
 
-- name: checkout code to build dir - with key
+- name: checkout private repos
   git:
     repo={{ item.repo }}
     version={{ item.version }}
     depth=1
     update=yes
     accept_hostkey=yes
-    dest={{ requirerole_temp }}
+    dest={{ requirerole_temp }}/{{ item.repo | basename | splitext | first }}
     force=yes
     recursive=yes
     key_file={{ requirerole_keyfile }}
   with_items: "{{ requirerole_repos_private }}"
 
-- name: checkout code to build dir - with key
+- name: checkout public repos
   git:
     repo={{ item.repo }}
     version={{ item.version }}
     depth=1
     update=yes
     accept_hostkey=yes
-    dest={{ requirerole_temp }}
+    dest={{ requirerole_temp }}/{{ item.repo | basename | splitext | first }}
     force=yes
     recursive=yes
   with_items: "{{ requirerole_repos_public }}"
 
 - name: copy roles to final location
-  command: cp -Rf {{ requirerole_temp }}/{{ item.folder }}/{{ subfolder }} {{ requirerole_destination }}/{{ item.fullname }}
+  command: "cp -Rf {{ requirerole_temp }}/{{ item.repo | basename | splitext | first }}/{{ item.subfolder }} {{ requirerole_destination }}/{{ item.fullname }}"
+  with_items: "{{ requirerole_repos_public | union(requirerole_repos_private) }}"
 
 

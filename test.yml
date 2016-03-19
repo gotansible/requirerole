@@ -3,10 +3,10 @@
   sudo: true
   roles:
     - role: requirerole
+      requirerole_owner: root
       requirerole_repos_private: []
       requirerole_repos_public:
-        - repo: "https://github.com/gotansible/requirerole"
-          folder: "requirerole"
-          subfolder: "deploy/roles/myrole"
-          fullname: "namespace.myrole"
+        - repo: "https://github.com/gotansible/requirerole.git"
+          subfolder: "defaults"
+          fullname: "gotansible.requirerole-test"
           version: "master"
