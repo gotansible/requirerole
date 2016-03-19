@@ -8,14 +8,14 @@ requirerole_group: "{{ requirerole_owner }}"
 
 requirerole_keyfile: ~/.ssh/mykeyfile
 
-requirerole_repos_private:
-  - repo: "git@github.com:gotansible/requirerole"
-    subfolder: "deploy/roles/myrole"
-    fullname: "namespace.myrole"
-    version: "master"
+requirerole_repos_private: []
+#  - repo: "git@github.com:gotansible/requirerole"
+#    subfolder: "deploy/roles/myrole"
+#    fullname: "namespace.myrole"
+#    version: "master"
 
-requirerole_repos_public:
-  - repo: "https://github.com/gotansible/requirerole"
-    subfolder: "deploy/roles/myrole"
-    fullname: "namespace.myrole"
-    version: "master"
+requirerole_repos_public: []
+#  - repo: "https://github.com/gotansible/requirerole"
+#    subfolder: "deploy/roles/myrole"
+#    fullname: "namespace.myrole"
+#    version: "master"
