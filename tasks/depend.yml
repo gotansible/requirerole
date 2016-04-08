@@ -1,6 +1,7 @@
 ---
 
 - name: depend - debian install dependencies
+  sudo: true
   apt:
     name={{ item }}
     state=present
