@@ -8,5 +8,10 @@
       requirerole_repos_public:
         - repo: "https://github.com/gotansible/requirerole.git"
           subfolder: "defaults"
+          fullname: "gotansible.subfolder-test"
+          version: "master"
+
+        - repo: "https://github.com/gotansible/requirerole.git"
+          subfolder: ""
           fullname: "gotansible.requirerole-test"
           version: "master"

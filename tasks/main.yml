@@ -41,7 +41,7 @@
   with_items: "{{ requirerole_repos_public }}"
 
 - name: copy roles to final location
-  command: "cp -Rf {{ requirerole_temp }}/{{ item.repo | basename | splitext | first }}/{{ item.subfolder }} {{ requirerole_destination }}/{{ item.fullname }}"
+  command: "cp -Rf {{ requirerole_temp }}/{{ item.repo | basename | splitext | first }}/{{ item.subfolder | default('.') }} {{ requirerole_destination }}/{{ item.fullname }}"
   with_items: "{{ requirerole_repos_public | union(requirerole_repos_private) }}"
 
 
