@@ -27,6 +27,21 @@
     recursive=yes
     key_file={{ requirerole_keyfile }}
   with_items: "{{ requirerole_repos_private }}"
+  when: requireroles_keyfile | length > 0
+
+- name: checkout private repos
+  git:
+    repo={{ item.repo }}
+    version={{ item.version }}
+    depth=1
+    update=yes
+    accept_hostkey=yes
+    dest={{ requirerole_temp }}/{{ item.repo | basename | splitext | first }}
+    force=yes
+    recursive=yes
+  with_items: "{{ requirerole_repos_private }}"
+  when: requireroles_keyfile | length == 0
+
 
 - name: checkout public repos
   git:
